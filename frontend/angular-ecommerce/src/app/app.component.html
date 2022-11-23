@@ -1,5 +1,34 @@
 
-  <!--SIDEBAR-->
-  <app-categories-list></app-categories-list>
+<div class="page-wrapper">
+<!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand w-auto pe-5 ms-4" href="#">Florist's Shop</a>
+  
+        <div class="collapse navbar-collapse col-xs-4" id="navbarSupportedContent">
+  
+            <form class="d-flex w-50">
+                <input class="form-control ms-5 " type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success ms-3 w-25" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+  </nav>
+  <!-- END OF NAVBAR -->
+ 
 
+<div class="page-container row">
+
+ <!--SIDEBAR-->
+ <div class="col-2">
+ <app-categories-list></app-categories-list>
+</div>
 <!--END OF SIDEBAR-->
+<div class="col">
+<app-product-list></app-product-list>
+</div>
+<!-- MAIN CONTENT -->
+
+</div>
+</div>
+<!-- END OF MAIN CONTENT -->
