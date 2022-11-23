@@ -1,0 +1,15 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 200px; height: 100vh;">
+    <a  class="link-dark text-decoration-none mx-auto">
+
+        <span class="fs-4">Categories</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column">
+        <li *ngFor="let category of categories" class="nav-item mb-2 ">
+            <a href="#" class="btn btn-outline-primary w-100" aria-current="page">
+                {{category.name}} 
+            </a>
+        </li>
+
+    </ul>
+</div>
