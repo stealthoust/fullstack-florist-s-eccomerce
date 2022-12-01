@@ -11,4 +11,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface ProductRepository extends JpaRepository<Product,Integer> {
 
     Page<Product> findByCategoryId(@Param("id") Integer id, Pageable pageable);
+
+    Page<Product> findByNameContaining(@Param("name") String name, Pageable pageable);
 }

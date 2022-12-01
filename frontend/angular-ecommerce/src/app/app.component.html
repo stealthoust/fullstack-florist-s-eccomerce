@@ -5,12 +5,10 @@
     <div class="container-fluid">
         <a class="navbar-brand w-auto pe-5 ms-4" href="#">Florist's Shop</a>
   
-        <div class="collapse navbar-collapse col-xs-4" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
   
-            <form class="d-flex w-50">
-                <input class="form-control ms-5 " type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success ms-3 w-25" type="submit">Search</button>
-            </form>
+<app-search></app-search>
+
         </div>
     </div>
   </nav>
@@ -25,7 +23,8 @@
 </div>
 <!--END OF SIDEBAR-->
 <div class="col">
-<app-product-list></app-product-list>
+<!-- <app-product-list></app-product-list> -->
+<router-outlet></router-outlet>
 </div>
 <!-- MAIN CONTENT -->
 
