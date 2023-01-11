@@ -1,36 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
-.product-box img {
-    width: 100px;
+
+
+body {
+  margin: 0;
+}
+.page-wrapper {
+
+  display: flex;
+
+
+}
+.main-nav {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  flex-direction: row;
+background-color: gray;
 }
 
-.items select {
-    width: 100px;
-    height: 40px;
-    border-radius: 40px;
-    padding-left: 15px;
-    margin-bottom: 10px;
-    outline: 0;
-    margin-left: 5px;
+.main-nav_logo-container {
+  min-width: 3rem;
+  min-height: 3rem;
+  margin: 0.5rem;
+  display: flex;
+
 }
-.product-box{
-    margin-bottom:60px
+
+#main-nav_logo {
+  width: 100%;
+  height: 100%;
 }
-.price{
-    margin:15px 0 0;
-    font-weight:800;
-    color:#0da8e4
+
+
+.shopping-cart {
+  width: 15%;
+  min-width: 8rem;
+  height: 80%;
+  border: solid 1px black;
+  display: flex;
+  margin-left: auto;
+  margin-right: 1rem;
+
+
 }
-.product-box h1{
-    font-size:18px;
-    border-bottom:1px solid #ccc;
-    padding-bottom:5px;
-    font-weight:600;
-    padding-top:12px;
-    margin-bottom:7px
+.shopping-cart_details{
+  width: 60%;
+  height: 80%;
+  background-color: wheat;
+  margin:auto 0 auto 2%;
+  border-radius: 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
 }
-.product-box h2{
-    font-size:15px;
-    padding-bottom:0;
-    font-weight:500;
-    color:#585858
+.shopping-cart_details span{
+  font-weight: bold;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding:0 0.2rem;
 }
+
+#shopping-cart-img {
+  width: 15%;
+  height: 60%;
+
+  margin:auto 2% auto 0;
+
+}
+.content{
+  display: flex;
+  flex-direction: row;
+  margin-top: 5rem;
+
+}
+.content__sidebar{
+  width: 10%;
+  max-width: 13rem;
+  min-width: 10rem;
+}
+.content__products{
+  min-width: 50rem;
+  width: 100%;
+}
+.sidebar {
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
+

@@ -1,28 +1,40 @@
 
 <div class="page-wrapper">
 <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand w-auto pe-5 ms-4" href="#">Florist's Shop</a>
-  
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
-  
+  <nav class="main-nav">
+    <div class="main-nav_logo-container">
+      <img id="main-nav_logo">
+    </div>
+    <div class="main-nav_input">
 <app-search></app-search>
+    </div>
+    <div class="shopping-cart">
+      <div class="shopping-cart_details">
 
-        </div>
+                <span class="shopping-cart_details__quantity">
+            4
+            </span>
+        <span>|</span>
+
+        <span class="shopping-cart_details__price">
+            13335$
+</span>
+      </div>
+      <img src="assets/images/shopping_basket.png" alt="Koszyk" id="shopping-cart-img">
+
     </div>
   </nav>
   <!-- END OF NAVBAR -->
- 
 
-<div class="page-container row">
+
+<div class="content" >
 
  <!--SIDEBAR-->
- <div class="col-2">
+ <div class="content__sidebar">
  <app-categories-list></app-categories-list>
 </div>
 <!--END OF SIDEBAR-->
-<div class="col">
+<div class="content__products">
 <!-- <app-product-list></app-product-list> -->
 <router-outlet></router-outlet>
 </div>

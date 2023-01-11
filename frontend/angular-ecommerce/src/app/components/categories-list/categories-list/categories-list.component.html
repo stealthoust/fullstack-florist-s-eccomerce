@@ -1,17 +1,13 @@
-<aside class="menu-sidebar d-none d-lg-block">
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 200px; height: 100vh;">
-    <a  class="link-dark text-decoration-none mx-auto">
-
-        <span class="fs-4">Categories</span>
-    </a>
+<aside class="sidebar">
+<div class="sidebar-content">
+        <span class="sidebar-content__title">Categories</span>
     <hr>
-    <ul class="nav nav-pills flex-column">
-        <li *ngFor="let category of categories" class="nav-item mb-2 ">
+    <ul class="nav nav-pills flex-column ">
+        <li *ngFor="let category of categories" class="category-item m-1">
             <a routerLink="/category/{{category.id}}" routerLinkActive="active-link" class="btn btn-outline-primary w-100" aria-current="page">
-                {{category.name}} 
+                {{category.name}}
             </a>
         </li>
-
     </ul>
 </div>
 </aside>

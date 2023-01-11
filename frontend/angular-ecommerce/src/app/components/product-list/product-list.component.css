@@ -1,0 +1,44 @@
+
+.product-row {
+  background-color: coral;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.product-box {
+  width: 15rem;
+  border: solid 0.2rem black;
+  margin: 1rem;
+  text-align: center;
+
+}
+
+.product-box img {
+  margin: 0.5rem auto;
+  width: 40%;
+  height: 40%;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+
+}
+.product-info a h1 {
+font-size: 1.5rem;
+}
+
+.product-info a:nth-of-type(2) {
+  text-decoration: none;
+  color: black;
+}
+.product-info .primary-btn{
+
+  margin-bottom: 0.5rem;
+}
+.product-buttons button {
+  width: 45%;
+  margin: 0.5%;
+}
+

@@ -8,7 +8,10 @@ import { Product } from 'src/app/common/product/product';
 })
 export class ProductService {
 
-
+  getProduct(productId:number):Observable<Product>{
+const productUrl=`${this.baseUrl}/${productId}`;
+return this.httpClient.get<Product>(productUrl);
+  }
   private baseUrl='http://localhost:8080/api/products';
 
   constructor(private httpClient:HttpClient) { }
