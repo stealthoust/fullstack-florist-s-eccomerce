@@ -1,12 +1,18 @@
 
+html{
+  background-color: #F9F9F9;
 
+}
 body {
   margin: 0;
+  height: 100%;
+
 }
 .page-wrapper {
 
   display: flex;
-
+height: 100%;
+  width: 100%;
 
 }
 .main-nav {
@@ -16,71 +22,45 @@ body {
   align-items: center;
   position: fixed;
   flex-direction: row;
-background-color: gray;
+background-color: #F5A623;
 }
 
 .main-nav_logo-container {
-  min-width: 3rem;
-  min-height: 3rem;
-  margin: 0.5rem;
+margin:10% 5% 10% 3%;
+  height: 80%;
   display: flex;
 
 }
 
-#main-nav_logo {
-  width: 100%;
-  height: 100%;
+.main-nav_input{
+  width: 45%;
 }
-
-
 .shopping-cart {
   width: 15%;
-  min-width: 8rem;
+
   height: 80%;
   border: solid 1px black;
   display: flex;
+
   margin-left: auto;
-  margin-right: 1rem;
+  margin-right: 2%;
 
-
-}
-.shopping-cart_details{
-  width: 60%;
-  height: 80%;
-  background-color: wheat;
-  margin:auto 0 auto 2%;
-  border-radius: 6px;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-}
-.shopping-cart_details span{
-  font-weight: bold;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding:0 0.2rem;
-}
-
-#shopping-cart-img {
-  width: 15%;
-  height: 60%;
-
-  margin:auto 2% auto 0;
 
 }
 .content{
+  width: 100%;
   display: flex;
   flex-direction: row;
   margin-top: 5rem;
+  background-color: #F9F9F9;
 
 }
 .content__sidebar{
   width: 10%;
   max-width: 13rem;
   min-width: 10rem;
+  height: 100%;
+
 }
 .content__products{
   min-width: 50rem;

@@ -1,0 +1,9 @@
+input{
+  width: 30%;
+  transition: width 1s;
+}
+input:focus{
+  transition: width 1s;
+  width: 100%;
+}
+

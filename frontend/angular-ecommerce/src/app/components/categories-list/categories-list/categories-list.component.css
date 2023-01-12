@@ -1,3 +1,12 @@
+.btn{
+  background-color: #8BC34A;
+  color: #333333;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border:2px solid green;
+}
+.btn:hover{
+border-color: red;
+}
 
 .sidebar-content__title {
   font-size: 1.6rem;

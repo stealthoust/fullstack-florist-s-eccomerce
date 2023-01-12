@@ -1,6 +1,8 @@
-
+.main-content{
+  background-color: #F9F9F9;
+}
 .product-row {
-  background-color: coral;
+
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -36,6 +38,8 @@ font-size: 1.5rem;
 .product-info .primary-btn{
 
   margin-bottom: 0.5rem;
+  text-decoration: none;
+  color:#F5A623;
 }
 .product-buttons button {
   width: 45%;

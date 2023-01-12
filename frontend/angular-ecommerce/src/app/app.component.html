@@ -1,45 +1,32 @@
-
 <div class="page-wrapper">
-<!-- NAVBAR -->
+  <!-- NAVBAR -->
   <nav class="main-nav">
     <div class="main-nav_logo-container">
-      <img id="main-nav_logo">
+      <img id="main-nav_logo" src="assets/images/logo.png">
     </div>
     <div class="main-nav_input">
-<app-search></app-search>
+      <app-search></app-search>
     </div>
     <div class="shopping-cart">
-      <div class="shopping-cart_details">
-
-                <span class="shopping-cart_details__quantity">
-            4
-            </span>
-        <span>|</span>
-
-        <span class="shopping-cart_details__price">
-            13335$
-</span>
-      </div>
-      <img src="assets/images/shopping_basket.png" alt="Koszyk" id="shopping-cart-img">
-
+<app-cart-status></app-cart-status>
     </div>
   </nav>
   <!-- END OF NAVBAR -->
 
 
-<div class="content" >
+  <div class="content">
 
- <!--SIDEBAR-->
- <div class="content__sidebar">
- <app-categories-list></app-categories-list>
-</div>
-<!--END OF SIDEBAR-->
-<div class="content__products">
-<!-- <app-product-list></app-product-list> -->
-<router-outlet></router-outlet>
-</div>
-<!-- MAIN CONTENT -->
+    <!--SIDEBAR-->
+    <div class="content__sidebar">
+      <app-categories-list></app-categories-list>
+    </div>
+    <!--END OF SIDEBAR-->
+    <div class="content__products">
+      <!-- <app-product-list></app-product-list> -->
+      <router-outlet></router-outlet>
+    </div>
+    <!-- MAIN CONTENT -->
 
-</div>
+  </div>
 </div>
 <!-- END OF MAIN CONTENT -->

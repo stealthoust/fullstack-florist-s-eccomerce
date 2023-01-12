@@ -4,7 +4,7 @@
     <hr>
     <ul class="nav nav-pills flex-column ">
         <li *ngFor="let category of categories" class="category-item m-1">
-            <a routerLink="/category/{{category.id}}" routerLinkActive="active-link" class="btn btn-outline-primary w-100" aria-current="page">
+            <a routerLink="/category/{{category.id}}" routerLinkActive="active-link" class="btn w-100" aria-current="page">
                 {{category.name}}
             </a>
         </li>
