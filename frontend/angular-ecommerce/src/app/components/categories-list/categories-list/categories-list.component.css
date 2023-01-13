@@ -3,9 +3,12 @@
   color: #333333;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   border:2px solid green;
+
 }
 .btn:hover{
-border-color: red;
+border-color: #F5A623;
+  font-weight: bold;
+
 }
 
 .sidebar-content__title {

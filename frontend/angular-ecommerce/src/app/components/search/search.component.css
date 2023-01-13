@@ -4,6 +4,6 @@ input{
 }
 input:focus{
   transition: width 1s;
-  width: 100%;
+  width: 60%;
 }
 
