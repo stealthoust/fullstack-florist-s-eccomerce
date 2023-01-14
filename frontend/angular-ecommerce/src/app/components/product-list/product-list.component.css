@@ -40,18 +40,17 @@ font-size: 1.5rem;
 }
 .product-info .primary-btn{
 
-  background-color: #F5A623;
-  color:#F9F9F9;
+  background-color: #4b9641;
+  color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border:2px solid green;
   margin-bottom: 4%;
   width: 70%;
   border-radius: 9px;
 }
 .product-info .primary-btn:hover,
 .product-info .primary-btn:active{
-  background-color: #8BC34A;
-  color: #333333;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  border:2px solid green;
+  border-color: white;
   font-weight: bold;
 }
 .product-buttons button {

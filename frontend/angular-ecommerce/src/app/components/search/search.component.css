@@ -1,9 +1,13 @@
 input{
   width: 30%;
   transition: width 1s;
+  border: 2px solid black;
 }
 input:focus{
   transition: width 1s;
   width: 60%;
+  border-color: #4b9641;
+  -webkit-box-shadow: none;
+
 }
 

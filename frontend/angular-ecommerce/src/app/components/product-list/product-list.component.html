@@ -13,8 +13,8 @@
                   <h1 >{{product.name}}</h1>
                 </a>
                 <div class="price">{{product.unitPrice |currency: 'EUR'}}</div>
-                <button class="primary-btn">
-                <a (click)="addToCart(product)" >Add to cart</a>
+                <button (click)="addToCart(product)" class="primary-btn">
+                Add to cart
                 </button>
               </div>
             </div>

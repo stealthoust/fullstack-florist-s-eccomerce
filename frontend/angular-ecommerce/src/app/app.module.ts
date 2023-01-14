@@ -10,6 +10,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import {ToastrModule} from "ngx-toastr";
+
+import { NotificationComponent } from './components/notification/notification.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 const routes :Routes=[
@@ -28,12 +32,19 @@ const routes :Routes=[
     CategoriesListComponent,
     SearchComponent,
     ProductDetailsComponent,
-    CartStatusComponent
+    CartStatusComponent,
+    NotificationComponent
+
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-bottom-right",
+      timeOut:1500
+    })
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
