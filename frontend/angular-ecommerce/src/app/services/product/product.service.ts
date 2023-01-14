@@ -33,6 +33,17 @@ return this.httpClient.get<Product>(productUrl);
       map(response => response._embedded.products)
     );
   }
+/*  const searchUrl = `${this.baseUrl}`
+    + `?page=${thePage}&size=${thePageSize}`;*/
+  getProductListPaginateNoCategory(
+                                   thePageSize: number=40) {
+
+
+    const searchUrl = `${this.baseUrl}`
+      + `?size=${thePageSize}`;
+
+    return this.getProducts(searchUrl);
+  }
 }
 
 interface GetResponse{

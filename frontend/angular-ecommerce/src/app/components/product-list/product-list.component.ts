@@ -46,8 +46,17 @@ export class ProductListComponent implements OnInit {
     const ifCategoryExsist: boolean = this.route.snapshot.paramMap.has('id');
     if (ifCategoryExsist) {
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
+      this.productService.getProductList(this.currentCategoryId).subscribe(
+        data => {
+          this.products = data;
+        }
+      )
     } else {
-      this.currentCategoryId = 1;
+      this.productService.getProductListPaginateNoCategory().subscribe(
+        data => {
+          this.products = data;
+        }
+      )
     }
 
     this.productService.getProductList(this.currentCategoryId).subscribe(
