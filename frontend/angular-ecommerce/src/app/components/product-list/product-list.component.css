@@ -60,7 +60,11 @@ font-size: 1.5rem;
   margin: 0.5%;
   align-items: flex-end;
 }
-
+.alert{
+  margin-top: 1rem;
+  background-color: #4b9641;
+  color: white;
+}
 #paginator{
   display: flex;
   justify-content: center;
