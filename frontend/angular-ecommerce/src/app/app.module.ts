@@ -14,6 +14,8 @@ import {ToastrModule} from "ngx-toastr";
 
 import { NotificationComponent } from './components/notification/notification.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { PaginationComponent } from './components/pagination/pagination.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 const routes :Routes=[
@@ -22,6 +24,7 @@ const routes :Routes=[
   {path: 'category/:id',component:ProductListComponent},
   {path: 'category',component:ProductListComponent},
   {path: 'products',component:ProductListComponent},
+  {path: 'allproducts',component:ProductListComponent},
   {path: '',redirectTo: '/products',pathMatch:'full'},
   {path: '**',redirectTo: '/products', pathMatch: 'full'}
 ];
@@ -33,7 +36,8 @@ const routes :Routes=[
     SearchComponent,
     ProductDetailsComponent,
     CartStatusComponent,
-    NotificationComponent
+    NotificationComponent,
+    PaginationComponent
 
   ],
   imports: [
@@ -42,9 +46,10 @@ const routes :Routes=[
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass:"toast-bottom-right",
-      timeOut:1500
-    })
+      positionClass: "toast-bottom-right",
+      timeOut: 1500
+    }),
+    MatPaginatorModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/common/category/category';
 import { CategoryService } from 'src/app/services/category/category.service';
-import {ProductService} from "../../../services/product/product.service";
+
 
 @Component({
   selector: 'app-categories-list',
@@ -12,7 +12,7 @@ export class CategoriesListComponent implements OnInit {
 
   categories:Category[]=[];
 
-  constructor(private categoryService:CategoryService, private productService:ProductService) { }
+  constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void {
     this.listCategories();

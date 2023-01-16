@@ -35,10 +35,7 @@ return this.httpClient.get<Product>(productUrl);
   }
 /*  const searchUrl = `${this.baseUrl}`
     + `?page=${thePage}&size=${thePageSize}`;*/
-  getProductListPaginateNoCategory(
-                                   thePageSize: number=40) {
-
-
+  getProductListPaginateNoCategory(thePageSize: number=10) {
     const searchUrl = `${this.baseUrl}`
       + `?size=${thePageSize}`;
 
@@ -49,5 +46,11 @@ return this.httpClient.get<Product>(productUrl);
 interface GetResponse{
   _embedded:{
     products:Product[];
+  },
+  page:{
+    size:number;
+    totalElements:number,
+    totalPages:number,
+    number:number
   }
 }

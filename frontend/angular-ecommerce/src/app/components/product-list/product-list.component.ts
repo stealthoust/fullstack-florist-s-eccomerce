@@ -51,19 +51,20 @@ export class ProductListComponent implements OnInit {
           this.products = data;
         }
       )
+      console.log(this.route.snapshot.paramMap.has('id'));
     } else {
-      this.productService.getProductListPaginateNoCategory().subscribe(
+      this.productService.getProductListPaginateNoCategory(15).subscribe(
         data => {
           this.products = data;
         }
       )
     }
 
-    this.productService.getProductList(this.currentCategoryId).subscribe(
+/*    this.productService.getProductList(this.currentCategoryId).subscribe(
       data => {
         this.products = data;
       }
-    )
+    )*/
   }
 
   handleSearchProducts() {
