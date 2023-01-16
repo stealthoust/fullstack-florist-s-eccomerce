@@ -5,6 +5,7 @@ import {ProductService} from 'src/app/services/product/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {CartService} from "../../services/cart/cart.service";
 import {CartItem} from "../../common/cart-item/cart-item";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-product-list',
@@ -15,12 +16,19 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
   currentCategoryId: number = 1;
+  previousCategoryId: number = 1;
   searchMode: boolean = false;
+
+  thePageNumber: number = 1;
+  thePageSize: number = 5;
+  theTotalElements: number = 0;
+
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -28,6 +36,7 @@ export class ProductListComponent implements OnInit {
     });
 
   }
+
 
   listProducts() {
 
@@ -40,31 +49,36 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+OnPageChange(e:PageEvent)
+{
+  this.thePageSize=e.pageSize;
+  this.theTotalElements=e.length;
+  this.thePageNumber=e.pageIndex+1;
+  this.listProducts();
 
+}
   handleListProducts() {
 
     const ifCategoryExsist: boolean = this.route.snapshot.paramMap.has('id');
     if (ifCategoryExsist) {
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
-      this.productService.getProductList(this.currentCategoryId).subscribe(
-        data => {
-          this.products = data;
-        }
-      )
-      console.log(this.route.snapshot.paramMap.has('id'));
+
+      if (this.previousCategoryId != this.currentCategoryId) {
+        this.thePageNumber = 1;
+      }
+      this.previousCategoryId=this.currentCategoryId;
+      this.productService.getProductListPaginate(this.thePageNumber-1,
+        this.thePageSize,
+        this.currentCategoryId).subscribe(this.getNestedProductsData())
     } else {
-      this.productService.getProductListPaginateNoCategory(15).subscribe(
-        data => {
-          this.products = data;
-        }
-      )
+      this.productService.getProductListPaginateNoCategory(this.thePageNumber-1,this.thePageSize).subscribe(this.getNestedProductsData())
     }
 
-/*    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => {
-        this.products = data;
-      }
-    )*/
+    /*    this.productService.getProductList(this.currentCategoryId).subscribe(
+          data => {
+            this.products = data;
+          }
+        )*/
   }
 
   handleSearchProducts() {
@@ -78,8 +92,16 @@ export class ProductListComponent implements OnInit {
 
   addToCart(product: Product) {
     console.log(`Adding to cart: ${product.name}`)
-    let theCartItem=new CartItem(product.id, product.name,product.imageUrl,
+    let theCartItem = new CartItem(product.id, product.name, product.imageUrl,
       product.unitPrice)
     this.cartService.addToCart(theCartItem);
+  }
+  getNestedProductsData(){
+    return(data:any)=>{
+      this.products = data._embedded.products;
+      this.thePageNumber = data.page.number + 1;
+      this.thePageSize = data.page.size;
+      this.theTotalElements = data.page.totalElements;
+    }
   }
 }

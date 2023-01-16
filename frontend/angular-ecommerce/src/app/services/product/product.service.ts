@@ -1,29 +1,41 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { Product } from 'src/app/common/product/product';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {map, Observable} from 'rxjs';
+import {Product} from 'src/app/common/product/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  getProduct(productId:number):Observable<Product>{
-const productUrl=`${this.baseUrl}/${productId}`;
-return this.httpClient.get<Product>(productUrl);
+
+  private baseUrl = 'http://localhost:8080/api/products';
+
+  constructor(private httpClient: HttpClient) {
   }
-  private baseUrl='http://localhost:8080/api/products';
 
-  constructor(private httpClient:HttpClient) { }
+  getProduct(productId: number): Observable<Product> {
+    const productUrl = `${this.baseUrl}/${productId}`;
+    return this.httpClient.get<Product>(productUrl);
+  }
 
-  getProductList(categoryId:number): Observable<Product[]> {
+  getProductList(categoryId: number): Observable<Product[]> {
 
-    const url=`${this.baseUrl}/search/findByCategoryId?id=${categoryId}`;
+    const url = `${this.baseUrl}/search/findByCategoryId?id=${categoryId}`;
     return this.getProducts(url);
   }
 
+  getProductListPaginate(page: number,
+                         pageSize: number,
+                         categoryId: number): Observable<GetResponse> {
+
+    const url = `${this.baseUrl}/search/findByCategoryId?id=${categoryId}
+    &page=${page}&size=${pageSize}`;
+    return this.httpClient.get<GetResponse>(url);
+  }
+
   searchProducts(theKeyword: string) {
-    const url=`${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
+    const url = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
 
     return this.getProducts(url);
   }
@@ -33,24 +45,24 @@ return this.httpClient.get<Product>(productUrl);
       map(response => response._embedded.products)
     );
   }
-/*  const searchUrl = `${this.baseUrl}`
-    + `?page=${thePage}&size=${thePageSize}`;*/
-  getProductListPaginateNoCategory(thePageSize: number=10) {
-    const searchUrl = `${this.baseUrl}`
-      + `?size=${thePageSize}`;
 
-    return this.getProducts(searchUrl);
+  getProductListPaginateNoCategory( thePage: number,thePageSize: number ) :Observable<GetResponse> {
+    const searchUrl = `${this.baseUrl}`
+      + `?size=${thePageSize}&page=${thePage}`;
+
+    return this.httpClient.get<GetResponse>(searchUrl);
+
   }
 }
 
-interface GetResponse{
-  _embedded:{
-    products:Product[];
+interface GetResponse {
+  _embedded: {
+    products: Product[];
   },
-  page:{
-    size:number;
-    totalElements:number,
-    totalPages:number,
-    number:number
+  page: {
+    size: number;
+    totalElements: number,
+    totalPages: number,
+    number: number
   }
 }
