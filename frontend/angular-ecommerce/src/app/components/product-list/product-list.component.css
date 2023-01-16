@@ -5,10 +5,15 @@
 
   width: 100%;
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
 }
 
 .product-box {
+  background-color: white;
+  border-radius: 40px;
+  padding: 1rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   width: 15rem;
   margin: 1rem;
   text-align: center;
@@ -18,7 +23,7 @@
 .product-box img {
   margin: 0.5rem auto;
   width: 40%;
-  height: 40%;
+  height: 30%;
 }
 
 .product-info {
@@ -53,6 +58,7 @@ font-size: 1.5rem;
 .product-buttons button {
   width: 45%;
   margin: 0.5%;
+  align-items: flex-end;
 }
 
 #paginator{

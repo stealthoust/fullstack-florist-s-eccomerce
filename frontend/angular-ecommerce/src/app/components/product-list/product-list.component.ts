@@ -83,11 +83,7 @@ OnPageChange(e:PageEvent)
 
   handleSearchProducts() {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
-    this.productService.searchProducts(theKeyword).subscribe(
-      data => {
-        this.products = data;
-      }
-    );
+    this.productService.searchProducts(this.thePageNumber-1,this.thePageSize,theKeyword).subscribe(this.getNestedProductsData());
   }
 
   addToCart(product: Product) {

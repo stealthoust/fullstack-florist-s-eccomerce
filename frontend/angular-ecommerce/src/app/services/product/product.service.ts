@@ -34,10 +34,11 @@ export class ProductService {
     return this.httpClient.get<GetResponse>(url);
   }
 
-  searchProducts(theKeyword: string) {
-    const url = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
+  searchProducts(page: number,
+                 pageSize: number, theKeyword: string): Observable<GetResponse> {
+    const url = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}&page=${page}&size=${pageSize}`;
 
-    return this.getProducts(url);
+    return this.httpClient.get<GetResponse>(url);
   }
 
   private getProducts(url: string) {
@@ -46,7 +47,7 @@ export class ProductService {
     );
   }
 
-  getProductListPaginateNoCategory( thePage: number,thePageSize: number ) :Observable<GetResponse> {
+  getProductListPaginateNoCategory(thePage: number, thePageSize: number): Observable<GetResponse> {
     const searchUrl = `${this.baseUrl}`
       + `?size=${thePageSize}&page=${thePage}`;
 
