@@ -9,7 +9,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let cartItem of cartItems">
-    <td><img src="{{cartItem.imageUrl}}" alt="{{cartItem.name}}_{{cartItem.id}}"></td>
+    <td><div class="img-container"><img src="{{cartItem.imageUrl}}" alt="{{cartItem.name}}_{{cartItem.id}}"></div></td>
     <td>
       <div class="product-name">{{cartItem.name}}</div>
       <div class="product-price">{{cartItem.unitPrice | currency:'EUR'}}</div>
@@ -17,7 +17,7 @@
     </td>
     <td >
       <div class="summary">
-      <div>
+      <div class="summary__details">
         <div class="product-quantity">Quantity: {{cartItem.quantity}}</div>
         <div class="product-total-price">Subtotal: {{ cartItem.quantity! * cartItem?.unitPrice! | currency: 'EUR' }}</div>
       </div>
