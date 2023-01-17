@@ -1,0 +1,21 @@
+<div class="main-content">
+  <div class="product-details">
+    <div class="product-content">
+      <div class="product-content__img">
+        <img src="{{product.imageUrl}}">
+      </div>
+      <div class="product-content__info">
+        <span>{{product.name}} ({{product.unitPrice| currency:'EUR'}})</span>
+        <hr/>
+        <span>{{product.description}}</span>
+
+      </div>
+    </div>
+
+    <div class="product-details__buttons">
+      <button routerLink="/products">Wróć do listy</button>
+      <button (click)="addToCart()">Dodaj do koszyka</button>
+    </div>
+
+  </div>
+</div>

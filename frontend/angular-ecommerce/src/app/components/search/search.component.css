@@ -1,7 +1,9 @@
 input{
+  font-size: 0.9rem;
   width: 30%;
   transition: width 1s;
   border: 2px solid black;
+  padding:7px;
 }
 input:focus{
   transition: width 1s;

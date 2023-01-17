@@ -1,0 +1,42 @@
+<div class="main-content">
+<table>
+  <thead>
+  <tr>
+    <th>Image</th>
+    <th>Product Detail</th>
+    <th>Summary</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cartItem of cartItems">
+    <td><img src="{{cartItem.imageUrl}}" alt="{{cartItem.name}}_{{cartItem.id}}"></td>
+    <td>
+      <div class="product-name">{{cartItem.name}}</div>
+      <div class="product-price">{{cartItem.unitPrice | currency:'EUR'}}</div>
+
+    </td>
+    <td >
+      <div class="summary">
+      <div>
+        <div class="product-quantity">Quantity: {{cartItem.quantity}}</div>
+        <div class="product-total-price">Subtotal: {{ cartItem.quantity! * cartItem?.unitPrice! | currency: 'EUR' }}</div>
+      </div>
+      <div class="product-operations">
+        <button (click)="decreamentQuantity(cartItem)" class="decrease-button">-</button>
+        <button (click)="increamentQuantity(cartItem)"  class="add-button">+</button>
+        <button (click)="removeItem(cartItem)" class="remove-button">Remove</button>
+      </div>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2"></td>
+    <td>
+      <div class="total-quantity">Total quantity: {{totalQuantity}}</div>
+      <div class="total-price">Total price: {{totalPrice | currency:'EUR'}}</div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
