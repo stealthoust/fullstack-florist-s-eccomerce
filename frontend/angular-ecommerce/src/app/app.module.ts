@@ -18,6 +18,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 const routes :Routes=[
@@ -55,7 +56,8 @@ const routes :Routes=[
       positionClass: "toast-bottom-right",
       timeOut: 1500
     }),
-    MatPaginatorModule
+    MatPaginatorModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
