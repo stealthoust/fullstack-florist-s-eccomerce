@@ -27,6 +27,7 @@ body {
   position: fixed;
   flex-direction: row;
   background-color: #eb91c4;
+  z-index: 10;
 }
 
 .main-nav_logo-container {

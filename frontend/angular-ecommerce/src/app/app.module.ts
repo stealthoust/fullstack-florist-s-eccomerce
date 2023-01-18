@@ -17,6 +17,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { PaginationComponent } from './components/pagination/pagination.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 const routes :Routes=[
@@ -25,7 +26,8 @@ const routes :Routes=[
   {path: 'category/:id',component:ProductListComponent},
   {path: 'category',component:ProductListComponent},
   {path: 'products',component:ProductListComponent},
-  {path: 'checkout',component:ShoppingListComponent},
+  {path: 'cart-details',component:ShoppingListComponent},
+  {path: 'checkout',component:CheckoutComponent},
 
   {path: '',redirectTo: '/products',pathMatch:'full'},
   {path: '**',redirectTo: '/products', pathMatch: 'full'}
@@ -40,7 +42,8 @@ const routes :Routes=[
     CartStatusComponent,
     NotificationComponent,
     PaginationComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    CheckoutComponent
 
   ],
   imports: [
