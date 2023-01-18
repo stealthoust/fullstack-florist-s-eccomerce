@@ -59,7 +59,13 @@ button[type='submit'] {
   font-weight: bold;
   margin-top: 10px;
 }
+.review-section div{
+  padding: 0;
+}
+.review-section>p{
+  margin-bottom: 0;
 
+}
 button[type='submit']:hover {
   background-color: #3e8e41;
 }

@@ -1,9 +1,9 @@
 <div class="main-content">
   <div class="form-content">
-    <form [formGroup]="checkoutFormGroup">
-      <div class="form-section">
+    <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+      <div class="form-section" formGroupName="customer">
         <h3>Customer</h3>
-        <div class="form-group">
+        <div class="form-group" >
           <label >First Name</label>
           <input formControlName="firstName" type="text"  >
         </div>
@@ -17,15 +17,23 @@
         </div>
       </div>
 
-      <div class="form-section">
+      <div class="form-section" formGroupName="shippingAddress">
         <h3>Shipping Address</h3>
         <div class="form-group">
           <label >Country</label>
-          <input formControlName="country" type="text"  >
+          <select formControlName="country" >
+            <option >
+              Country
+            </option>
+          </select>
         </div>
         <div class="form-group">
           <label >State</label>
-          <input formControlName="state" type="text"  >
+          <select formControlName="state" >
+            <option >
+              State
+            </option>
+          </select>
         </div>
         <div class="form-group">
           <label >City</label>
@@ -42,7 +50,7 @@
 
       </div>
 
-      <div class="form-section">
+      <div class="form-section" formGroupName="creditCard">
         <h3>Credit Card</h3>
         <div class="form-group">
           <label >Card Type</label>
@@ -54,7 +62,7 @@
         </div>
         <div class="form-group">
           <label >Name in Card</label>
-          <input formControlName="nameInCard" type="text"  >
+          <input formControlName="nameOnCard" type="text"  >
         </div>
         <div class="form-group">
           <label >Card Number</label>
@@ -73,11 +81,22 @@
           <input formControlName="expYear" type="text" >
         </div>
       </div>
-      <div class="form-section">
+      <div class="form-section review-section">
         <h3>Review your order</h3>
-        <p>Total Quantity: 20</p>
-        <p>Shipping: FREE</p>
-        <p>Total Price: 30</p>
+        <p>Total products quantity: {{totalQuantity}}</p>
+        <div *ngIf="totalPrice<30">
+          <p *ngIf="totalPrice<30">Shipping: {{5|currency:'EUR'}}</p>
+          <p>Total Price: {{totalPrice|currency:'EUR'}}
+            + {{5|currency:'EUR'}} =
+            {{(totalPrice+5)|currency:'EUR'}}</p>
+        </div>
+        <div *ngIf="totalPrice>=30">
+        <p *ngIf="totalPrice>=30">Shipping <b>Free!</b></p>
+          <p>Total Price: {{totalPrice| currency:'EUR'}}</p>
+
+        </div>
+
+
       </div>
       <button type="submit">Purchase</button>
     </form>
