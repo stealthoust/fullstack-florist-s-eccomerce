@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {CartService} from "../../services/cart/cart.service";
 import {MyShopService} from "../../services/myShop/my-shop.service";
 import {Country} from "../../common/country/country";
 import {State} from "../../common/state/state";
+import {ShopValidator} from "../../validators/shop-validator";
 
 
 @Component({
@@ -24,6 +25,7 @@ export class CheckoutComponent implements OnInit {
   states: State[] = [];
 
 
+
   constructor(private formBuilder: FormBuilder,
               private cartService: CartService,
               private myShopService: MyShopService) {
@@ -34,16 +36,16 @@ export class CheckoutComponent implements OnInit {
     this.getCountries();
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('',[Validators.required,Validators.minLength(2)]),
-        lastName: new FormControl('',[Validators.required,Validators.minLength(2)]),
+        firstName: new FormControl('',[Validators.required,Validators.minLength(2),ShopValidator.notOnlyWhitespace]),
+        lastName: new FormControl('',[Validators.required,Validators.minLength(2),ShopValidator.notOnlyWhitespace]),
         email: new FormControl('',[Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       shippingAddress: this.formBuilder.group({
-        country: [''],
-        state: [''],
-        city: [''],
-        zipCode: [''],
-        street: ['']
+        country: new FormControl('',[Validators.required]),
+        state: new FormControl('',[Validators.required]),
+        city: new FormControl('',[Validators.required,Validators.minLength(2),ShopValidator.notOnlyWhitespace]),
+        zipCode: new FormControl('',[Validators.required,Validators.minLength(2),ShopValidator.notOnlyWhitespace]),
+        street: new FormControl('',[Validators.required,Validators.minLength(2),ShopValidator.notOnlyWhitespace])
       }),
       creditCard: this.formBuilder.group({
         cardType: [''],
@@ -120,4 +122,19 @@ export class CheckoutComponent implements OnInit {
   get firstName(){return this.checkoutFormGroup.get('customer.firstName');}
   get lastName(){return this.checkoutFormGroup.get('customer.lastName');}
   get email(){return this.checkoutFormGroup.get('customer.email');}
+
+  get country(){return this.checkoutFormGroup.get('shippingAddress.country');}
+  get state(){return this.checkoutFormGroup.get('shippingAddress.state');}
+  get city(){return this.checkoutFormGroup.get('shippingAddress.city');}
+  get zipCode(){return this.checkoutFormGroup.get('shippingAddress.zipCode');}
+  get street(){return this.checkoutFormGroup.get('shippingAddress.street');}
+
+  get cardType(){return this.checkoutFormGroup.get('creditCard.cardType');}
+  get nameOnCard(){return this.checkoutFormGroup.get('creditCard.nameOnCard');}
+  get cardNumber(){return this.checkoutFormGroup.get('creditCard.cardNumber');}
+  get securityCode(){return this.checkoutFormGroup.get('creditCard.securityCode');}
+  get expMonth(){return this.checkoutFormGroup.get('creditCard.expMonth');}
+  get expYear(){return this.checkoutFormGroup.get('creditCard.expYear');}
+
+
 }
