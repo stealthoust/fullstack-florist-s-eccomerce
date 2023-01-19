@@ -2,7 +2,9 @@ package com.florist.springbackend.config;
 
 
 import com.florist.springbackend.Entity.Category;
+import com.florist.springbackend.Entity.Country;
 import com.florist.springbackend.Entity.Product;
+import com.florist.springbackend.Entity.State;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -34,6 +36,8 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
         disableHttpMethods(Product.class,config,unsupportedActions);
         disableHttpMethods(Category.class,config,unsupportedActions);
+        disableHttpMethods(Country.class,config,unsupportedActions);
+        disableHttpMethods(State.class,config,unsupportedActions);
 
         exposeIds(config);
 
