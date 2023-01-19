@@ -55,9 +55,9 @@
         <div class="form-group">
           <label >Card Type</label>
           <select formControlName="cardType" >
-            <option value="visa">Visa</option>
-            <option value="mastercard">Mastercard</option>
-            <option value="american-express">American Express</option>
+            <option >Visa</option>
+            <option >Mastercard</option>
+            <option >American Express</option>
           </select>
         </div>
         <div class="form-group">
@@ -74,25 +74,30 @@
         </div>
         <div class="form-group">
           <label >Expiration Month</label>
-          <input formControlName="expMonth" type="text"  >
+          <select formControlName="expMonth" >
+            <option *ngFor="let month of creditCardMonths">{{month}}</option>
+          </select>
         </div>
         <div class="form-group">
           <label >Expiration Year</label>
-          <input formControlName="expYear" type="text" >
+          <select formControlName="expYear" (change)="handleMonthsAndYears()">
+            <option *ngFor="let year of creditCardYears">{{year}}</option>
+          </select>
+
         </div>
       </div>
       <div class="form-section review-section">
         <h3>Review your order</h3>
         <p>Total products quantity: {{totalQuantity}}</p>
         <div *ngIf="totalPrice<30">
-          <p *ngIf="totalPrice<30">Shipping: {{5|currency:'EUR'}}</p>
+          <p *ngIf="totalPrice<30">Shipping: <b>{{5|currency:'EUR'}}</b></p>
           <p>Total Price: {{totalPrice|currency:'EUR'}}
             + {{5|currency:'EUR'}} =
-            {{(totalPrice+5)|currency:'EUR'}}</p>
+            <b>{{(totalPrice+5)|currency:'EUR'}}</b></p>
         </div>
         <div *ngIf="totalPrice>=30">
         <p *ngIf="totalPrice>=30">Shipping <b>Free!</b></p>
-          <p>Total Price: {{totalPrice| currency:'EUR'}}</p>
+          <p>Total Price: <b>{{totalPrice| currency:'EUR'}}</b></p>
 
         </div>
 
