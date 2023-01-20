@@ -6,7 +6,10 @@ import com.florist.springbackend.Entity.Country;
 import com.florist.springbackend.Entity.Product;
 import com.florist.springbackend.Entity.State;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
@@ -25,6 +28,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     @Value("${allowed.origins}")
     private String[] theAllowedOrigins;
+
 
     public MyDataRestConfig(EntityManager entityManager) {
         this.entityManager = entityManager;

@@ -62,6 +62,15 @@ input, select {
   text-align: center;
   padding: 10px;
 }
+#card-element{
+  padding: 20px;
+}
+#card-errors{
+  margin-top: 5px;
+font-weight: bold;
+  color: red;
+
+}
 button[type='submit'] {
   width: 100%;
   padding: 10px;

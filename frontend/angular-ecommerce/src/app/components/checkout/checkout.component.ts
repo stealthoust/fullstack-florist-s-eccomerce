@@ -5,6 +5,8 @@ import {MyShopService} from "../../services/myShop/my-shop.service";
 import {Country} from "../../common/country/country";
 import {State} from "../../common/state/state";
 import {ShopValidator} from "../../validators/shop-validator";
+import {environment} from "../../../environments/environment";
+import {PaymentInfo} from "../../common/PaymentInfo/payment-info";
 
 
 @Component({
@@ -24,7 +26,11 @@ export class CheckoutComponent implements OnInit {
   countries: Country[] = [];
   states: State[] = [];
 
+stripe=Stripe(environment.stripePublishableKey);
 
+paymentInfo:PaymentInfo=new PaymentInfo();
+cardElement:any;
+displayError:any="";
 
   constructor(private formBuilder: FormBuilder,
               private cartService: CartService,
@@ -32,7 +38,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDates();
+  this.setupStripePaymentForm();
     this.getCountries();
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
@@ -48,12 +54,7 @@ export class CheckoutComponent implements OnInit {
         street: new FormControl('',[Validators.required,Validators.minLength(2),ShopValidator.notOnlyWhitespace])
       }),
       creditCard: this.formBuilder.group({
-        cardType: [''],
-        nameOnCard: [''],
-        cardNumber: [''],
-        securityCode: [''],
-        expMonth: [''],
-        expYear: ['']
+
       })
 
     });
@@ -75,34 +76,17 @@ export class CheckoutComponent implements OnInit {
    if(this.checkoutFormGroup.invalid){
      this.checkoutFormGroup.markAllAsTouched();
    }
+
+   this.paymentInfo.amount=this.totalPrice*100;
+   this.paymentInfo.currency="EUR";
+
+   if(!this.checkoutFormGroup.invalid &&this.displayError.textContent===""){
+
+   }
   }
 
-  getDates() {
-    const startMonth: number = new Date().getMonth() + 1;
-    this.myShopService.getCreditCardMonths(startMonth).subscribe(data => {
-      console.log("Retrieved credit card months: " + JSON.stringify(data));
-      this.creditCardMonths = data;
-    });
-    this.myShopService.getCreditCardYears().subscribe(data => {
-      console.log("Retrieved credit card years: " + JSON.stringify(data));
-      this.creditCardYears = data;
-    });
-  }
 
-  handleMonthsAndYears() {
-    const creditCardFormGroup = this.checkoutFormGroup.get('creditCard');
-    const currentYear: number = new Date().getFullYear();
-    const selectedYear: number = Number(creditCardFormGroup?.value.expYear);
-    let startMonth: number;
-    if (currentYear === selectedYear) {
-      startMonth = new Date().getMonth() + 1;
-    } else {
-      startMonth = 1;
-    }
-    this.myShopService.getCreditCardMonths(startMonth).subscribe(data => {
-      this.creditCardMonths = data;
-    });
-  }
+
 
   getCountries(){
     this.myShopService.getCountries().subscribe(data=>{
@@ -129,12 +113,21 @@ export class CheckoutComponent implements OnInit {
   get zipCode(){return this.checkoutFormGroup.get('shippingAddress.zipCode');}
   get street(){return this.checkoutFormGroup.get('shippingAddress.street');}
 
-  get cardType(){return this.checkoutFormGroup.get('creditCard.cardType');}
-  get nameOnCard(){return this.checkoutFormGroup.get('creditCard.nameOnCard');}
-  get cardNumber(){return this.checkoutFormGroup.get('creditCard.cardNumber');}
-  get securityCode(){return this.checkoutFormGroup.get('creditCard.securityCode');}
-  get expMonth(){return this.checkoutFormGroup.get('creditCard.expMonth');}
-  get expYear(){return this.checkoutFormGroup.get('creditCard.expYear');}
 
 
+  private setupStripePaymentForm() {
+    var elements=this.stripe.elements();
+    this.cardElement=elements.create('card',{hidePostalCode:true});
+    this.cardElement.mount('#card-element');
+    this.cardElement.on('change',(event:any)=>{
+      this.displayError=document.getElementById('card-errors');
+      if(event.complete){
+        this.displayError.textContent="";
+
+      } else if(event.error){
+        console.log(event.error);
+        this.displayError.textContent=event.error.message;
+      }
+    })
+  }
 }
