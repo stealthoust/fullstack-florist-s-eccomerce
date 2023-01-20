@@ -1,6 +1,8 @@
 package com.florist.springbackend.Entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,7 +14,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "orders")
-@Data
+@Getter
+@Setter
 public class Order {
 
     @Id
@@ -45,17 +48,17 @@ public class Order {
     private Customer customer;
 
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shipping_address_id",referencedColumnName = "id")
-    private Address address;
+    private Address shippingAddress;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "order")
-    private Set<OrderItem> items=new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    private Set<OrderItem> orderItems = new HashSet<>();
 
     public void add(OrderItem item){
         if(item!=null){
-            if(items==null) items=new HashSet<>();
-            items.add(item);
+            if(orderItems ==null) orderItems =new HashSet<>();
+            orderItems.add(item);
             item.setOrder(this);
         }
     }

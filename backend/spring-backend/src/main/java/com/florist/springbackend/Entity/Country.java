@@ -1,5 +1,6 @@
 package com.florist.springbackend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,5 +26,6 @@ public class Country {
     private String code;
 
     @OneToMany(mappedBy = "country")
+    @JsonIgnore
     private List<State> states;
 }
