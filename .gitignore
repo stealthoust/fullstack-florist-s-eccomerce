@@ -108,3 +108,4 @@ secrets.yml
 .sts4-cache
 *.properties
 backend/spring-backend/src/main/resources/application.properties
+backend/spring-backend/src/main/resources/secret.properties
