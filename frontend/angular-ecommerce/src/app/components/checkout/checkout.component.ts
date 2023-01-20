@@ -116,7 +116,7 @@ displayError:any="";
 
 
   private setupStripePaymentForm() {
-    var elements=this.stripe.elements();
+    var elements=this.stripe.elements({locale:'en'});
     this.cardElement=elements.create('card',{hidePostalCode:true});
     this.cardElement.mount('#card-element');
     this.cardElement.on('change',(event:any)=>{
