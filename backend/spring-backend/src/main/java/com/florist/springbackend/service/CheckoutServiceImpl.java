@@ -24,23 +24,19 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Override
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
-        Order order=purchase.getOrder();
-
-        String orderTrackingNumber=generateOrderTrackingNumber();
+        Order order = purchase.getOrder();
+        String orderTrackingNumber = generateOrderTrackingNumber();
         order.setOrderTrackingNumber(orderTrackingNumber);
-
-        Set<OrderItem> orderItems=purchase.getOrderItems();
+        Set<OrderItem> orderItems = purchase.getOrderItems();
         orderItems.forEach((item -> order.add(item)));
-
-
         order.setShippingAddress(purchase.getShippingAddress());
-
-        Customer customer= purchase.getCustomer();
+        Customer customer = purchase.getCustomer();
+        if (customerRepository.findByEmail(purchase.getCustomer().getEmail()) != null) {
+            customer=customerRepository.findByEmail(purchase.getCustomer().getEmail());
+        }
 
         customer.add(order);
-
         customerRepository.save(customer);
-
         return new PurchaseResponse(orderTrackingNumber);
     }
 
