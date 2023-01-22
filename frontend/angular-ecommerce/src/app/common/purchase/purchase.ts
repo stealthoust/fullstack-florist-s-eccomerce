@@ -4,8 +4,8 @@ import {OrderItem} from "../order-item/order-item";
 import {Address} from "../address/address";
 
 export class Purchase {
-  customer?: Customer;
-  shippingAddress?: Address;
-  order?:Order;
-  orderItems?:OrderItem[];
+  customer!: Customer;
+  shippingAddress!: Address;
+  order!: Order;
+  orderItems!: OrderItem[];
 }
