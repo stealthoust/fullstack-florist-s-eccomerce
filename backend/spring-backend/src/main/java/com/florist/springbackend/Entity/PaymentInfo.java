@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 public class PaymentInfo {
 
 private int amount;
-public static String currency;
+private String currency;
 
-    @Value("${stripe.key.secret}")
-    public void setCurrency(String currency) {
-        PaymentInfo.currency = currency;
-    }
+
 }
