@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {map, Observable, of} from "rxjs";
+import {EventEmitter, Injectable, Output} from '@angular/core';
+import {BehaviorSubject, map, Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Country} from "../../common/country/country";
 import {Category} from "../../common/category/category";
@@ -28,6 +28,9 @@ export class MyShopService {
     );
 
     }
+
+
+   categoriesListEvent = new BehaviorSubject("");
 }
 interface GetResponseCountries{
   _embedded:{

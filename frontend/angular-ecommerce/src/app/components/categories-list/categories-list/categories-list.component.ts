@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/common/category/category';
-import { CategoryService } from 'src/app/services/category/category.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Category} from 'src/app/common/category/category';
+import {CategoryService} from 'src/app/services/category/category.service';
+import {MyShopService} from "../../../services/myShop/my-shop.service";
 
 
 @Component({
@@ -10,19 +11,24 @@ import { CategoryService } from 'src/app/services/category/category.service';
 })
 export class CategoriesListComponent implements OnInit {
 
-  categories:Category[]=[];
+  categories: Category[] = [];
 
-  constructor(private categoryService:CategoryService) { }
+  constructor(private categoryService: CategoryService, private mySHopService: MyShopService) {
+  }
 
   ngOnInit(): void {
     this.listCategories();
   }
-
+changeCategory() {
+  this.mySHopService.categoriesListEvent.next("Search by keyword...");
+}
   listCategories() {
     this.categoryService.getCategoriesList().subscribe(
-      data=>{
-        this.categories=data;
+      data => {
+        this.categories = data;
       }
     )
   }
+
+
 }

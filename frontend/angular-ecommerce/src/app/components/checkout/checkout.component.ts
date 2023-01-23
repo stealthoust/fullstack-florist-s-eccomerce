@@ -25,6 +25,7 @@ export class CheckoutComponent implements OnInit {
   totalQuantity: number = 0;
   totalPrice: number = 0;
 
+  isAvailable:boolean=false;
 
   countries: Country[] = [];
   states: State[] = [];
@@ -60,7 +61,9 @@ export class CheckoutComponent implements OnInit {
         zipCode: new FormControl('', [Validators.required, Validators.minLength(2), ShopValidator.notOnlyWhitespace]),
         street: new FormControl('', [Validators.required, Validators.minLength(2), ShopValidator.notOnlyWhitespace])
       }),
-      creditCard: this.formBuilder.group({})
+      creditCard: this.formBuilder.group(
+        new FormControl('', [Validators.required])
+      )
 
     });
 
@@ -110,7 +113,8 @@ export class CheckoutComponent implements OnInit {
   onSubmit() {
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
-      console.log("invalid");
+      console.log(this.cardElement.cardholder);
+
       return;
     }
 
@@ -141,6 +145,7 @@ export class CheckoutComponent implements OnInit {
 
     if (!this.checkoutFormGroup.invalid && this.displayError.textContent === "") {
 
+      this.isAvailable=true;
 
       this.checkoutService.createPaymentIntent(this.paymentInfo).subscribe(
         (paymentIntentResponse) => {
@@ -164,16 +169,19 @@ export class CheckoutComponent implements OnInit {
             .then((result: any) => {
               if (result.error) {
                 alert(`There was an error: ${result.error.message}`);
+                this.isAvailable=false;
 
               } else {
                 this.checkoutService.placeOrder(purchase).subscribe({
                   next: (response: any) => {
                     alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
                     this.resetCart();
+                    this.isAvailable=false;
 
                   },
                   error: (err: any) => {
                     alert(`There was an error: ${err.message}`);
+                    this.isAvailable=false;
                   }
                 })
               }
@@ -207,7 +215,7 @@ export class CheckoutComponent implements OnInit {
     var elements = this.stripe.elements({locale: 'en'});
     this.cardElement = elements.create('card', {hidePostalCode: true});
     this.cardElement.mount('#card-element');
-    this.cardElement.on('change', (event: any) => {
+    this.cardElement.on('change' , (event: any) => {
       this.displayError = document.getElementById('card-errors');
       if (event.complete) {
         this.displayError.textContent = "";
