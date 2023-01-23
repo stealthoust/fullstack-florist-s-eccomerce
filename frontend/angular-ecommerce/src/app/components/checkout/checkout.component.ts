@@ -135,7 +135,7 @@ export class CheckoutComponent implements OnInit {
 
     const shippingState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
     const shippingCountry: Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
-
+console.log(JSON.parse(JSON.stringify(purchase.shippingAddress.state)));
     purchase.shippingAddress!.state = shippingState.name;
     purchase.shippingAddress!.country = shippingCountry.name;
 
