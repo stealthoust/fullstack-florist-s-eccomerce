@@ -43,7 +43,7 @@ export class CartService {
   this.toastr.success("Product successfully added to cart!");
     this.computeCartTotals();
   }
-//compute current quantity and value of shopping cart
+
    computeCartTotals() {
     let totalPriceValue:number=0;
     let totalQuantityValue:number=0;
@@ -52,7 +52,6 @@ export class CartService {
       totalPriceValue+=currentCartItem.quantity*currentCartItem.unitPrice!;
       totalQuantityValue+=currentCartItem.quantity;
     }
-
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
 

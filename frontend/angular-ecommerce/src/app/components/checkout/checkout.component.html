@@ -137,14 +137,15 @@
 
 
       </div>
-      <div class="form-section review-section">
+      <div class="form-section review-section" >
         <h3>Review your order</h3>
         <p>Total products quantity: {{totalQuantity}}</p>
         <div *ngIf="totalPrice<30">
+
           <p *ngIf="totalPrice<30">Shipping: <b>{{5|currency:'EUR'}}</b></p>
-          <p>Total Price: {{totalPrice|currency:'EUR'}}
+          <p>Total Price: {{totalPrice-5|currency:'EUR'}}
             + {{5|currency:'EUR'}} =
-            <b>{{(totalPrice + 5)|currency:'EUR'}}</b></p>
+            <b>{{(totalPrice )|currency:'EUR'}}</b></p>
         </div>
         <div *ngIf="totalPrice>=30">
           <p *ngIf="totalPrice>=30">Shipping <b>Free!</b></p>

@@ -45,6 +45,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.setupStripePaymentForm();
     this.getCountries();
     this.getCartDetails();
@@ -75,7 +76,8 @@ export class CheckoutComponent implements OnInit {
       this.totalQuantity = data;
     })
     this.cartService.totalPrice.subscribe(data => {
-      this.totalPrice = data;
+      if(data<30)this.totalPrice = data+5;
+     else this.totalPrice = data;
 
     })
   }
@@ -192,7 +194,9 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-
+shippingPrice(){
+    if(this.totalPrice<30)this.totalPrice+=5;
+}
   getCountries() {
     this.myShopService.getCountries().subscribe(data => {
       this.countries = data;
