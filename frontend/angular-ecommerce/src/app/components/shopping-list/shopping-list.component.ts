@@ -12,14 +12,16 @@ export class ShoppingListComponent implements OnInit {
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
   totalQuantity: number = 0;
-
+  isAvailable:boolean = false;
   constructor(private cartService: CartService) {
   }
 
   ngOnInit(): void {
     this.listCartDetails();
   }
-
+  isAvailableMethod(){
+    this.isAvailable = this.totalPrice > 0;
+  }
   listCartDetails() {
     this.cartItems = this.cartService.cartItems;
 
@@ -28,7 +30,7 @@ export class ShoppingListComponent implements OnInit {
 
     this.cartService.totalQuantity.subscribe(data =>
       this.totalQuantity = data)
-
+    this.isAvailableMethod();
     this.cartService.computeCartTotals();
   }
   increamentQuantity(cartItem:CartItem){
@@ -37,8 +39,10 @@ export class ShoppingListComponent implements OnInit {
   }
   decreamentQuantity(cartItem:CartItem){
 this.cartService.decreamentQuantity(cartItem);
+    this.isAvailableMethod();
   }
   removeItem(cartItem:CartItem){
 this.cartService.removeItem(cartItem);
+    this.isAvailableMethod();
   }
 }

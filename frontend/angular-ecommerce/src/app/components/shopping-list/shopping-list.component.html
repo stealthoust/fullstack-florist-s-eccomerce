@@ -39,7 +39,7 @@
       <div class="total-price">Total price: {{totalPrice | currency:'EUR'}}</div>
         </div>
         <div class="product-operations">
-      <button routerLink="/checkout" class="checkout-button">Checkout</button>
+      <button [disabled]="!isAvailable" routerLink="/checkout" class="checkout-button">Checkout</button>
         </div>
       </div>
     </td>
